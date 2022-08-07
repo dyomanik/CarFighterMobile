@@ -2155,7 +2155,7 @@ MonoBehaviour:
   _countCriminalityText: {fileID: 753106492}
   _minCriminalityValue: 0
   _maxCriminalityValue: 5
-  _crimeEdgeValue: 3
+  _maxPeacefulCrimeValue: 3
   _characteristicValueMultiplayer: 1
   _countPowerEnemyText: {fileID: 750541711}
   _increaseMoneyButton: {fileID: 1953927038}
