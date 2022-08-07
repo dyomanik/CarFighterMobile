@@ -1,6 +1,6 @@
 namespace Rewards
 {
-    internal class DailyRewardView : RewardView
+    internal sealed class DailyRewardView : RewardView
     {
         private const string CurrentDailySlotInActiveKey = nameof(CurrentDailySlotInActiveKey);
         private const string TimeGetDailyRewardKey = nameof(TimeGetDailyRewardKey);
