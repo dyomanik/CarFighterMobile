@@ -12,11 +12,12 @@ namespace Rewards
 
         private List<ContainerSlotRewardView> _slots;
         private Coroutine _coroutine;
-
-        protected bool _isGetReward;
         private bool _isInitialized;
 
-        public RewardController(RewardView view) =>
+        protected bool _isGetReward;
+        
+
+        protected RewardController(RewardView view) =>
             _view = view;
 
         public void Init()

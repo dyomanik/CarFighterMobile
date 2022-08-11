@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TimeCooldown>k__BackingField: 86400
-  <TimeDeadline>k__BackingField: 259200
+  <TimeDeadline>k__BackingField: 172800
   <RewardConfigs>k__BackingField:
   - {fileID: 11400000, guid: 2c2d23ceafe9f344fb3d0cc538c0e0c6, type: 2}
   - {fileID: 11400000, guid: cefbbd4034e7c314e9e9113a05cb7cb8, type: 2}

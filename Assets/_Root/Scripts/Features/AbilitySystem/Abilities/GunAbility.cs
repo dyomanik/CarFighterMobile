@@ -8,6 +8,7 @@ namespace Features.AbilitySystem.Abilities
     internal class GunAbility : IAbility
     {
         private readonly IAbilityItem _config;
+        private readonly float _timeToDestroy = 2f;
 
 
         public GunAbility([NotNull] IAbilityItem config) =>
@@ -19,6 +20,7 @@ namespace Features.AbilitySystem.Abilities
             var projectile = Object.Instantiate(_config.Projectile).GetComponent<Rigidbody2D>();
             Vector3 force = activator.ViewGameObject.transform.right * _config.Value;
             projectile.AddForce(force, ForceMode2D.Force);
+            GameObject.Destroy(projectile.gameObject, _timeToDestroy);
         }
     }
 }
