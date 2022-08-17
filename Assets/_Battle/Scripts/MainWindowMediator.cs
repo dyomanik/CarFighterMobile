@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleScripts
+namespace Features.Fight
 {
     internal class MainWindowMediator : MonoBehaviour
     {
