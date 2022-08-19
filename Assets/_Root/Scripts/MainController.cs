@@ -1,3 +1,5 @@
+using Features.Fight;
+using Features.Rewards;
 using Features.Shed;
 using Game;
 using Profile;
@@ -13,6 +15,10 @@ internal class MainController : BaseController
     private SettingsMenuController _settingsMenuController;
     private GameController _gameController;
     private BaseContext _shedContext;
+    private RewardController _rewardController;
+    private StartFightController _startFightController;
+    private FightController _fightController;
+    private PauseController _pauseController;
 
     public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
     {
@@ -34,12 +40,20 @@ internal class MainController : BaseController
                 break;
             case GameState.Game:
                 _gameController = new GameController(_placeForUi, _profilePlayer);
+                _startFightController = new StartFightController(_placeForUi, _profilePlayer);
+                _pauseController = new PauseController(_placeForUi, _profilePlayer);
                 break;
             case GameState.Shed:
                 _shedContext = CreateShedContext(_placeForUi, _profilePlayer);
                 break;
             case GameState.Settings:
                 _settingsMenuController = new SettingsMenuController(_placeForUi, _profilePlayer);
+                break;
+            case GameState.DailyReward:
+                _rewardController = new RewardController(_placeForUi, _profilePlayer);
+                break;
+            case GameState.Fight:
+                _fightController = new FightController(_placeForUi, _profilePlayer);
                 break;
         }
     }
@@ -49,6 +63,10 @@ internal class MainController : BaseController
         _mainMenuController?.Dispose();
         _gameController?.Dispose();
         _settingsMenuController?.Dispose();
+        _rewardController?.Dispose();
+        _startFightController?.Dispose();
+        _fightController?.Dispose();
+        _pauseController?.Dispose();
     }
 
     private void DisposeContexts()

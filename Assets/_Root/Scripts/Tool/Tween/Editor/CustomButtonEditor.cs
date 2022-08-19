@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Tool.Tween.Editor
 {
-    [CustomEditor(typeof(CustomButtonByInheritance))]
+    [CustomEditor(typeof(CustomButtonByInheritance_Obsolete))]
     internal class CustomButtonEditor : ButtonEditor
     {
         private SerializedProperty m_InteractableProperty;
@@ -20,13 +20,13 @@ namespace Tool.Tween.Editor
         {
             var root = new VisualElement();
 
-            var animationType = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.AnimationTypeName));
-            var curveEase = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.CurveEaseName));
-            var duration = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.DurationName));
-            var vibrato = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.VibratoName));
-            var randomness = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.RandomnessName));
-            var snapping = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.SnappingName));
-            var fadeOut = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance.FadeOutName));
+            var animationType = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.AnimationTypeName));
+            var curveEase = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.CurveEaseName));
+            var duration = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.DurationName));
+            var vibrato = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.VibratoName));
+            var randomness = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.RandomnessName));
+            var snapping = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.SnappingName));
+            var fadeOut = new PropertyField(serializedObject.FindProperty(CustomButtonByInheritance_Obsolete.FadeOutName));
 
             var tweenGeneralSettingsLabel = new Label("General settings of Tween Animation");
             var tweenSpecificSettings = new Label("\nSettings for change rotation/position animations");

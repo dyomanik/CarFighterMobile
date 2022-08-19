@@ -16,7 +16,7 @@ namespace Ui
         {
             _profilePlayer = profilePlayer;
             _view = LoadView(placeForUi);
-            _view.Init(StartGame, Settings, RewardedAds, BuyProduct, Shed);
+            _view.Init(StartGame, Settings, RewardedAds, BuyProduct, Shed, OpenDailyReward, ExitGame);
             ServiceRoster.Analytics.SendMainMenuOpened();
 
             SubscribeAds();
@@ -52,6 +52,17 @@ namespace Ui
 
         private void Shed() =>
             _profilePlayer.CurrentState.Value = GameState.Shed;
+
+        private void OpenDailyReward() =>
+            _profilePlayer.CurrentState.Value = GameState.DailyReward;
+
+        private void ExitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
+        }
 
         private void SubscribeAds()
         {
