@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Packed Assets
+  m_EditorClassIdentifier: 
+  m_GroupName: Packed Assets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b649da2d3feb8224a880338de78614c0
+  m_SerializeEntries:
+  - m_GUID: 2942aaf698a496e47a3c763d9c0af26b
+    m_Address: Assets/_Root/Prefabs/SpawnedButton.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+  - m_GUID: dede5f4548992dd4ba1c9840a451ed31
+    m_Address: Assets/_Root/Sprites/SkySprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c8228747812a72a4cb695980790f6565, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b73336d3a657cf643acd40b4a9d9a620, type: 2}
+    - {fileID: 11400000, guid: ab0b5567b5ae67f4b90f632cefd5a2a1, type: 2}

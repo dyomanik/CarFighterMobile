@@ -42,7 +42,7 @@ namespace Ui
             onStart?.Invoke();
 
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(transform.DOScale(targetScale, duration));
+            sequence.Append(transform.DOScale(targetScale, duration)).SetUpdate(true);
             sequence.OnComplete(
                 () => onFinish?.Invoke());
         }
