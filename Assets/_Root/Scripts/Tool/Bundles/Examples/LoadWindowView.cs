@@ -42,7 +42,7 @@ namespace Tool.Bundles.Examples
             _removeBackgroundButton.onClick.RemoveAllListeners();
 
             DespawnPrefabs();
-            RemoveBackground();
+            ReleaseSprite();
         }
 
         private void LoadAssets()
@@ -84,8 +84,15 @@ namespace Tool.Bundles.Examples
 
         private void RemoveBackground()
         {
+            _addBackgroundButton.interactable = true;
+            _removeBackgroundButton.interactable = false;
             _backgroundImage.sprite = null;
             _backgroundImage.color = new Color();
+            ReleaseSprite();
+        }
+
+        private void ReleaseSprite()
+        {
             if (_spriteHandle.IsValid())
                 Addressables.Release<Sprite>(_spriteHandle);
         }

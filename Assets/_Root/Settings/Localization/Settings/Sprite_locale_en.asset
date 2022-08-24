@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: Sprite_locale_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c320c6e535fa5714589f0771f7473c88, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1614504550400
+    m_Localized: 111b5d9529bea0f48a53c821f723e0bc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13521517043712
+    m_Localized: fafb803f7fe9d374eb6fc86907329d8b
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
