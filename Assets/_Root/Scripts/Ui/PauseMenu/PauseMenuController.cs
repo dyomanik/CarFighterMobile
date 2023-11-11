@@ -30,7 +30,11 @@ namespace Ui
         private void Menu() =>
             _profilePlayer.CurrentState.Value = GameState.Start;
 
-        private void ContinueGame() => _view.HideMenu();
+        private void ContinueGame()
+        {
+            Time.timeScale = 1;
+            _view.HideMenu();
+        }
 
         public void ShowPauseMenu() => _view.ShowMenu();
 

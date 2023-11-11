@@ -26,7 +26,11 @@ namespace Ui
             return objectView.GetComponent<PauseView>();
         }
 
-        private void ShowPauseMenu() => _pauseMenuController.ShowPauseMenu();
+        private void ShowPauseMenu()
+        {
+            Time.timeScale = 0;
+            _pauseMenuController.ShowPauseMenu();
+        }
 
         private PauseMenuController CreatePauseMenuController(Transform placeForUi, ProfilePlayer profilePlayer)
         {
