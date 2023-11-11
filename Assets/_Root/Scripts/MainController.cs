@@ -26,6 +26,7 @@ internal class MainController : BaseController
     private void OnChangeGameState(GameState state)
     {
         DisposeSubControllers();
+        DisposeContexts();
         switch (state)
         {
             case GameState.Start:
@@ -48,6 +49,10 @@ internal class MainController : BaseController
         _mainMenuController?.Dispose();
         _gameController?.Dispose();
         _settingsMenuController?.Dispose();
+    }
+
+    private void DisposeContexts()
+    {
         _shedContext?.Dispose();
     }
 
@@ -61,6 +66,7 @@ internal class MainController : BaseController
     protected override void OnDispose()
     {
         DisposeSubControllers();
+        DisposeContexts();
         _profilePlayer.CurrentState.UnSubscribeOnChange(OnChangeGameState);
     }
 }
