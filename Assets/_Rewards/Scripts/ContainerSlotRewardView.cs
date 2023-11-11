@@ -16,17 +16,19 @@ namespace Rewards
         public void SetData(Reward reward, int countTime, bool isSelected)
         {
             _iconCurrency.sprite = reward.IconCurrency;
-            
+            string periodicityReward = string.Empty;
+
             switch (reward.PeriodicityRewardType)
             {
                 case PeriodicityRewardType.Day:
-                    _textTime.text = $"Day {countTime}";
+                    periodicityReward = PeriodicityRewardType.Day.ToString();
                     break;
                 case PeriodicityRewardType.Week:
-                    _textTime.text = $"Week {countTime}";
+                    periodicityReward = PeriodicityRewardType.Week.ToString();
                     break;
             }
 
+            _textTime.text = $"{periodicityReward} {countTime}";
             _countReward.text = reward.CountCurrency.ToString();
             UpdateBackground(isSelected);
         }
