@@ -7,6 +7,7 @@ namespace Profile
         Game,
         Settings,
         RewardedAds,
-        Buying
+        Buying,
+        Shed
     }
 }

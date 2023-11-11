@@ -6,7 +6,7 @@ namespace Services.Ads.UnityAds
     {
         public BannerPlayer(string id) : base(id) { }
 
-        protected override void OnPlaying() => Advertisement.Show(Id);
-        protected override void Load() => Advertisement.Load(Id);
+        protected override void OnPlaying() => Advertisement.Banner.Show(Id);
+        protected override void Load() => Advertisement.Banner.Load(Id);
     }
 }
