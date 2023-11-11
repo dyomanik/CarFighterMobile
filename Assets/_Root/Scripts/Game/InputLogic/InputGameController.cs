@@ -7,8 +7,7 @@ namespace Game.InputLogic
     internal class InputGameController : BaseController
     {
         private readonly ResourcePath _resourcePath = new ResourcePath("Prefabs/Input/KeyboardEndlessMove");
-        private BaseInputView _view;
-
+        private readonly BaseInputView _view;
 
         public InputGameController(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, CarModel car)
         {

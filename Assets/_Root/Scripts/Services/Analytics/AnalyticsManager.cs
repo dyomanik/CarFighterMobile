@@ -3,30 +3,31 @@ using Services.Analytics.UnityAnalytics;
 
 namespace Services.Analytics
 {
-    internal class AnalyticsManager : MonoBehaviour
+    internal interface IAnalyticsManager
     {
-        private static AnalyticsManager _instance;
-        internal static AnalyticsManager Instance { get => Instance = _instance; private set => _instance = value; }
-        
+        void SendGameStarted();
+        void SendMainMenuOpened();
+        void SendTransaction(string productId, decimal amount, string currency);
+    }
+
+    internal class AnalyticsManager : MonoBehaviour, IAnalyticsManager
+    {
         private IAnalyticsService[] _services;
 
         private void Awake()
         {
-            InitializeAnalyticsManager();
             _services = new IAnalyticsService[]
             {
                 new UnityAnalyticsService()
             };
         }
 
-        private void InitializeAnalyticsManager()
+        public void SendTransaction(string productId, decimal amount, string currency)
         {
-            if (_instance == null)
-            {
-                _instance = this;
-                return;
-            }
-            Destroy(gameObject);
+            for (int i = 0; i < _services.Length; i++)
+                _services[i].SendTransaction(productId, amount, currency);
+
+            Log($"Sent transaction {productId}");
         }
 
         public void SendMainMenuOpened() =>
@@ -35,11 +36,13 @@ namespace Services.Analytics
         public void SendGameStarted() =>
             SendEvent("Game Started");
 
-
         private void SendEvent(string eventName)
         {
             for (int i = 0; i < _services.Length; i++)
                 _services[i].SendEvent(eventName);
         }
+
+        private void Log(string message) =>
+            Debug.Log($"[{GetType().Name}] {message}");
     }
 }

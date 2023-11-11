@@ -6,9 +6,6 @@ namespace Services.IAP
 {
     internal class IAPService : MonoBehaviour, IStoreListener, IIAPService
     {
-        private static IAPService _instance;
-        internal static IAPService Instance {get => Instance = _instance; private set => _instance = value; }
-
         [Header("Components")]
         [SerializeField] private ProductLibrary _productLibrary;
 
@@ -26,17 +23,6 @@ namespace Services.IAP
         private void Awake()
         {
             InitializeProducts();
-            InitializeIAPServise();
-        }
-
-        private void InitializeIAPServise()
-        {
-            if (_instance == null)
-            {
-                _instance = this;
-                return;
-            }
-            Destroy(gameObject);
         }
 
         private void InitializeProducts()
@@ -72,11 +58,22 @@ namespace Services.IAP
         PurchaseProcessingResult IStoreListener.ProcessPurchase(PurchaseEventArgs args)
         {
             if (_purchaseValidator.Validate(args))
-                PurchaseSucceed.Invoke();
+                OnPurchaseSucceed(args.purchasedProduct);
             else
                 OnPurchaseFailed(args.purchasedProduct.definition.id, "NonValid");
 
             return PurchaseProcessingResult.Complete;
+        }
+
+        private void OnPurchaseSucceed(UnityEngine.Purchasing.Product product)
+        {
+            string productId = product.definition.id;
+            decimal amount = (decimal)(product.definition.payout?.quantity ?? 1);
+            string currency = product.metadata.isoCurrencyCode;
+            ServiceRoster.Analytics.SendTransaction(productId, amount, currency);
+
+            Log($"Purchased: {productId}");
+            PurchaseSucceed?.Invoke();
         }
 
         void IStoreListener.OnPurchaseFailed(UnityEngine.Purchasing.Product product, PurchaseFailureReason failureReason) =>
@@ -94,7 +91,6 @@ namespace Services.IAP
             if (IsInitialized)
             {
                 _controller.InitiatePurchase(id);
-                UnityEngine.Analytics.Analytics.Transaction(id, 1, "USD");
             }
             else
                 Error($"Buy {id} FAIL. Not initialized.");
@@ -113,7 +109,6 @@ namespace Services.IAP
             else
                 Error("RestorePurchases FAIL. Not initialized.");
         }
-
 
         private void Log(string message) => Debug.Log(WrapMessage(message));
         private void Error(string message) => Debug.LogError(WrapMessage(message));

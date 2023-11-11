@@ -539,10 +539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec1ff07dc984d7e90a763a7633ec1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _productId: product_1
   _buttonStart: {fileID: 315532611085353152}
   _buttonSettings: {fileID: 1234667692474672940}
   _buttonRewardedAds: {fileID: 5671497220071504512}
-  _buttonBuy: {fileID: 5126873691346470397}
+  _buttonBuyProduct: {fileID: 5126873691346470397}
   _buttonShed: {fileID: 2857680946805065389}
 --- !u!1 &6888920513732523659
 GameObject:

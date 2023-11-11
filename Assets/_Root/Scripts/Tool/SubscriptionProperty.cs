@@ -17,7 +17,6 @@ namespace Tool
             }
         }
 
-
         public void SubscribeOnChange(Action<TValue> subscriptionAction) =>
             _onChangeValue += subscriptionAction;
 

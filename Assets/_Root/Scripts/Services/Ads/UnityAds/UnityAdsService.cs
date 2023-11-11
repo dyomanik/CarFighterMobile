@@ -67,7 +67,6 @@ namespace Services.Ads.UnityAds
             ? new BannerPlayer(_settings.Banner.Id)
             : new StubPlayer("");
 
-
         void IUnityAdsInitializationListener.OnInitializationComplete()
         {
             Log("Initialization complete.");
@@ -76,7 +75,6 @@ namespace Services.Ads.UnityAds
 
         void IUnityAdsInitializationListener.OnInitializationFailed(UnityAdsInitializationError error, string message) =>
             Error($"Initialization Failed: {error.ToString()} - {message}");
-
 
         private void Log(string message) => Debug.Log(WrapMessage(message));
         private void Error(string message) => Debug.LogError(WrapMessage(message));

@@ -10,7 +10,6 @@ namespace Profile
         public readonly CarModel CurrentCar;
         public readonly InventoryModel Inventory;
 
-
         public ProfilePlayer(float speedCar, float jumpHeight, GameState initialState) : this(speedCar, jumpHeight)
         {
             CurrentState.Value = initialState;

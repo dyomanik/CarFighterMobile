@@ -9,7 +9,6 @@ namespace Game.TapeBackground
 
         private ISubscriptionProperty<float> _diff;
 
-
         public void Init(ISubscriptionProperty<float> diff)
         {
             _diff = diff;
@@ -20,7 +19,6 @@ namespace Game.TapeBackground
         {
             _diff?.UnSubscribeOnChange(Move);
         }
-
 
         private void Move(float value)
         {

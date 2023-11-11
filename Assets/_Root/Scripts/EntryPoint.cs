@@ -1,24 +1,19 @@
 using Profile;
-using Services.Analytics;
 using UnityEngine;
-using Services.Ads.UnityAds;
-using Services.IAP;
 
 internal class EntryPoint : MonoBehaviour
 {
-    private const float SpeedCar = 15f;
-    private const float JumpHeight = 5f;
-    private const GameState InitialState = GameState.Start;
-
+    [Header("References")]
     [SerializeField] private Transform _placeForUi;
+
+    [SerializeField] private EntryPointConfig _config;
 
     private MainController _mainController;
 
     private void Start()
     {
-        var profilePlayer = new ProfilePlayer(SpeedCar, JumpHeight, InitialState);
+        var profilePlayer = new ProfilePlayer(_config.SpeedCar, _config.JumpHeight, _config.InitialState);
         _mainController = new MainController(_placeForUi, profilePlayer);
-        AnalyticsManager.Instance.SendMainMenuOpened();
     }
 
     private void OnDestroy()

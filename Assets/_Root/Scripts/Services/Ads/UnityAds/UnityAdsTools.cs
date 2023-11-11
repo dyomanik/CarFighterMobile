@@ -26,7 +26,6 @@ namespace Tools
         {
             _callbackSuccessShowVideo = successShow;
             Advertisement.Show(_rewardedPlace);
-            Debug.Log("You have received 5 coins");
             Advertisement.Load(_rewardedPlace);
         }
 

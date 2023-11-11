@@ -6,8 +6,6 @@ namespace Profile
         Start,
         Game,
         Settings,
-        RewardedAds,
-        Buying,
         Shed
     }
 }

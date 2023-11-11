@@ -32,13 +32,12 @@ namespace Services.Ads.UnityAds
         protected abstract void OnPlaying();
         protected abstract void Load();
 
-
         void IUnityAdsListener.OnUnityAdsReady(string placementId)
         {
             if (IsIdMy(placementId) == false)
                 return;
 
-            Log($"Ready{Id}");
+            Log($"Ready");
             BecomeReady?.Invoke();
         }
 
@@ -77,7 +76,6 @@ namespace Services.Ads.UnityAds
                     break;
             }
         }
-
 
         private bool IsIdMy(string id) => Id == id;
 

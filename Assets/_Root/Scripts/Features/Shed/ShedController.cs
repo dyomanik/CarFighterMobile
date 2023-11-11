@@ -1,13 +1,12 @@
-using Tool;
+using Features.Shed;
+using Features.Shed.Upgrade;
+using JetBrains.Annotations;
 using Profile;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Features.Inventory;
-using Features.Shed.Upgrade;
-using JetBrains.Annotations;
 
-namespace Features.Shed
+namespace Features.Inventory
 {
     internal interface IShedController
     {
@@ -15,57 +14,31 @@ namespace Features.Shed
 
     internal class ShedController : BaseController, IShedController
     {
-        private readonly ResourcePath _viewPath = new ResourcePath("Prefabs/Shed/ShedView");
-        private readonly ResourcePath _dataSourcePath = new ResourcePath("Configs/Shed/UpgradeItemConfigDataSource");
-
-        private readonly ShedView _view;
         private readonly ProfilePlayer _profilePlayer;
-        private readonly InventoryController _inventoryController;
-        private readonly UpgradeHandlersRepository _upgradeHandlersRepository;
+        private readonly IShedView _view;
+        private readonly InventoryContext _inventoryContext;
+        private readonly IUpgradeHandlersRepository _upgradeHandlersRepository;
 
-
-        public ShedController([NotNull] Transform placeForUi, [NotNull] ProfilePlayer profilePlayer)
+        public ShedController(
+            [NotNull] ProfilePlayer profilePlayer,
+            [NotNull] IShedView shedView,
+            [NotNull] InventoryContext inventoryContext,
+            [NotNull] IUpgradeHandlersRepository repository)
         {
-            if (placeForUi == null)
-                throw new ArgumentNullException(nameof(placeForUi));
-
             _profilePlayer
                 = profilePlayer ?? throw new ArgumentNullException(nameof(profilePlayer));
 
-            _upgradeHandlersRepository = CreateRepository();
-            _inventoryController = CreateInventoryController(placeForUi);
-            _view = LoadView(placeForUi);
+            _view 
+                = shedView ?? throw new ArgumentNullException(nameof(shedView));
+
+            _inventoryContext
+                = inventoryContext ?? throw new ArgumentNullException(nameof(inventoryContext));
+
+            _upgradeHandlersRepository
+                = repository ?? throw new ArgumentNullException(nameof(repository));
 
             _view.Init(Apply, Back);
         }
-
-
-        private UpgradeHandlersRepository CreateRepository()
-        {
-            UpgradeItemConfig[] upgradeConfigs = ContentDataSourceLoader.LoadUpgradeItemConfigs(_dataSourcePath);
-            var repository = new UpgradeHandlersRepository(upgradeConfigs);
-            AddRepository(repository);
-
-            return repository;
-        }
-
-        private InventoryController CreateInventoryController(Transform placeForUi)
-        {
-            var inventoryController = new InventoryController(placeForUi, _profilePlayer.Inventory);
-            AddController(inventoryController);
-
-            return inventoryController;
-        }
-
-        private ShedView LoadView(Transform placeForUi)
-        {
-            GameObject prefab = ResourcesLoader.LoadPrefab(_viewPath);
-            GameObject objectView = UnityEngine.Object.Instantiate(prefab, placeForUi, false);
-            AddGameObject(objectView);
-
-            return objectView.GetComponent<ShedView>();
-        }
-
 
         private void Apply()
         {
@@ -87,7 +60,6 @@ namespace Features.Shed
             Log($"Back. Current Speed: {_profilePlayer.CurrentCar.Speed}" +
                 $"\nCurrent JumpHeight: {_profilePlayer.CurrentCar.JumpHeight}");
         }
-
 
         private void UpgradeWithEquippedItems(
             IUpgradable upgradable,

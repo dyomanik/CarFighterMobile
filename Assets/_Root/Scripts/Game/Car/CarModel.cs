@@ -22,7 +22,6 @@ namespace Game.Car
         {
             Speed = _defaultSpeed;
             JumpHeight = _defaultJumpHeight;
-        }
-            
+        }  
     }
 }
