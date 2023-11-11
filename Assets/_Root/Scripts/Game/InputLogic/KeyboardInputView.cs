@@ -1,24 +1,19 @@
 using JoostenProductions;
-using Tool;
 using UnityEngine;
+
 namespace Game.InputLogic
 {
     internal class KeyboardInputView : BaseInputView
     {
         private const string Horizontal = nameof(Horizontal);
-        [SerializeField] private float _inputMultiplier = 10;
 
-        public override void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
-        {
-            base.Init(leftMove, rightMove, speed);
-        }
+        [SerializeField] private float _inputMultiplier = 10;
 
         private void Start() =>
             UpdateManager.SubscribeToUpdate(Move);
 
         private void OnDestroy() =>
             UpdateManager.UnsubscribeFromUpdate(Move);
-
 
         private void Move()
         {

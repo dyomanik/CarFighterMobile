@@ -1,7 +1,10 @@
 using Ui;
 using Game;
+using Services.Analytics;
 using Profile;
 using UnityEngine;
+using Services.Ads.UnityAds;
+using Services.IAP;
 
 internal class MainController : BaseController
 {
@@ -11,7 +14,6 @@ internal class MainController : BaseController
     private MainMenuController _mainMenuController;
     private SettingsMenuController _settingsMenuController;
     private GameController _gameController;
-
 
     public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
     {
@@ -27,10 +29,13 @@ internal class MainController : BaseController
         _mainMenuController?.Dispose();
         _gameController?.Dispose();
         _settingsMenuController?.Dispose();
-
         _profilePlayer.CurrentState.UnSubscribeOnChange(OnChangeGameState);
     }
 
+    private void OnAdsInitialized() => UnityAdsService.Instance.RewardedPlayer.Play();
+
+    private void OnBuyInitialized() => IAPService.Instance.Buy("product_1");
+    
 
     private void OnChangeGameState(GameState state)
     {
@@ -45,11 +50,18 @@ internal class MainController : BaseController
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
                 _settingsMenuController?.Dispose();
+                AnalyticsManager.Instance.SendGameStarted();
                 break;
             case GameState.Settings:
                 _settingsMenuController = new SettingsMenuController(_placeForUi, _profilePlayer);
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();
+                break;
+            case GameState.RewardedAds:
+                OnAdsInitialized();
+                break;
+            case GameState.Buying:
+                OnBuyInitialized();
                 break;
             default:
                 _mainMenuController?.Dispose();

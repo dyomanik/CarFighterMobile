@@ -1,5 +1,8 @@
 using Profile;
+using Services.Analytics;
 using UnityEngine;
+using Services.Ads.UnityAds;
+using Services.IAP;
 
 internal class EntryPoint : MonoBehaviour
 {
@@ -11,10 +14,12 @@ internal class EntryPoint : MonoBehaviour
     private MainController _mainController;
 
 
+
     private void Start()
     {
         var profilePlayer = new ProfilePlayer(SpeedCar, InitialState);
         _mainController = new MainController(_placeForUi, profilePlayer);
+        AnalyticsManager.Instance.SendMainMenuOpened();
     }
 
     private void OnDestroy()

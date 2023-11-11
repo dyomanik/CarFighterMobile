@@ -2,6 +2,7 @@ using Profile;
 using Tool;
 using UnityEngine;
 using Object = UnityEngine.Object;
+
 namespace Ui
 {
     internal class SettingsMenuController : BaseController

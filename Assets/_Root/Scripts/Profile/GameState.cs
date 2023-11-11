@@ -5,6 +5,8 @@ namespace Profile
         None,
         Start,
         Game,
-        Settings
+        Settings,
+        RewardedAds,
+        Buying
     }
 }
