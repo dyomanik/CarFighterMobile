@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 3892819928
+CRC: 2979317291
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: ui_icons
+      Dependencies: {}
+    Info_1:
+      Name: audio
       Dependencies: {}
